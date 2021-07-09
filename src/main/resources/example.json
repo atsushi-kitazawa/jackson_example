@@ -1,0 +1,14 @@
+{
+  "id" : 1,
+  "str" : "abc",
+  "list" : [ "AAA", "BBB", "CCC" ],
+  "map" : {
+    "key1" : "value1",
+    "key2" : "value2"
+  },
+  "subList" : [ {
+    "subStr" : "sub1"
+  }, {
+    "subStr" : "sub2"
+  } ]
+}

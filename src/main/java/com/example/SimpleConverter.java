@@ -1,5 +1,10 @@
 package com.example;
 
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.stream.Collectors;
+
 import com.example.entity.Entity;
 import com.example.entity.EntityFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,7 +19,8 @@ public class SimpleConverter {
 
 	private void ClassToJson(Entity e) throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
-		String json = mapper.writeValueAsString(e);
+		String json = mapper.writerWithDefaultPrettyPrinter()
+				.writeValueAsString(e);
 		System.out.println(json);
 	}
 
@@ -22,7 +28,12 @@ public class SimpleConverter {
 		SimpleConverter c = new SimpleConverter();
 		c.ClassToJson(EntityFactory.create());
 
-		String json = "{\"id\":1,\"str\":\"abc\",\"list\":[\"AAA\",\"BBB\",\"CCC\"],\"map\":{\"key2\":\"value2\",\"key1\":\"value1\"}}";
+		String json = Files
+				.lines(Paths.get(SimpleConverter.class.getClassLoader()
+						.getResource("example.json").toURI()),
+						Charset.forName("UTF-8"))
+				.collect(Collectors
+						.joining(System.getProperty("line.separator")));
 		c.JsonToClass(json);
 	}
 }

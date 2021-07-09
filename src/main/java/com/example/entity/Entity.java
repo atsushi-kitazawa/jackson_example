@@ -9,6 +9,7 @@ public class Entity {
 	private String str;
 	private List<String> list;
 	private Map<String, String> map;
+	private List<SubEntity> subList;
 
 	public int getId() {
 		return id;
@@ -42,10 +43,18 @@ public class Entity {
 		this.map = map;
 	}
 
+	public List<SubEntity> getSubList() {
+		return subList;
+	}
+
+	public void setSubList(List<SubEntity> subList) {
+		this.subList = subList;
+	}
+
 	@Override
 	public String toString() {
 		return "Entity [id=" + id + ", str=" + str + ", list=" + list + ", map="
-				+ map + "]";
+				+ map + ", subList=" + subList + "]";
 	}
 
 }
