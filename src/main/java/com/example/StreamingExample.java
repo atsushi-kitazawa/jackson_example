@@ -67,8 +67,14 @@ public class StreamingExample {
 				while (parser.nextToken() != JsonToken.END_ARRAY) {
 					SubEntity subEntity = new SubEntity();
 					while (parser.nextToken() != JsonToken.END_OBJECT) {
-						String subStrField = parser.getCurrentName();
-						if ("subStr".equals(subStrField)) {
+						String subField = parser.getCurrentName();
+						if ("subId".equals(subField)) {
+							parser.nextToken();
+							print(fieldName, parser.getText());
+							subEntity.setSubId(
+									Integer.parseInt(parser.getText()));
+						}
+						if ("subStr".equals(subField)) {
 							parser.nextToken();
 							print(fieldName, parser.getText());
 							subEntity.setSubStr(parser.getText());
@@ -86,9 +92,9 @@ public class StreamingExample {
 	}
 
 	private void print(String field, String value) {
-		//System.out.println(field + ":" + value);
+		// System.out.println(field + ":" + value);
 	}
-	
+
 	public static void main(String[] args) throws Exception {
 		StreamingExample se = new StreamingExample();
 		String json = Files

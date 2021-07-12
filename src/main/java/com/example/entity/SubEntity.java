@@ -2,7 +2,16 @@ package com.example.entity;
 
 public class SubEntity {
 
+	private int subId;
 	private String subStr;
+
+	public int getSubId() {
+		return subId;
+	}
+
+	public void setSubId(int subId) {
+		this.subId = subId;
+	}
 
 	public String getSubStr() {
 		return subStr;
@@ -14,6 +23,6 @@ public class SubEntity {
 
 	@Override
 	public String toString() {
-		return "SubEntity [subStr=" + subStr + "]";
+		return "SubEntity [subId=" + subId + ", subStr=" + subStr + "]";
 	}
 }
