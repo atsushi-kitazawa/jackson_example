@@ -19,25 +19,25 @@ public class StreamingExample {
 			String fieldName = parser.getCurrentName();
 			if ("id".equals(fieldName)) {
 				parser.nextToken();
-				System.out.println(parser.getText());
+				print(fieldName, parser.getText());
 			}
 
 			if ("str".equals(fieldName)) {
 				parser.nextToken();
-				System.out.println(parser.getText());
+				print(fieldName, parser.getText());
 			}
 
 			if ("list".equals(fieldName)) {
 				parser.nextToken();
 				while (parser.nextToken() != JsonToken.END_ARRAY) {
-					System.out.println(parser.getText());
+					print(fieldName, parser.getText());
 				}
 			}
 
 			if ("map".equals(fieldName)) {
 				parser.nextToken();
 				while (parser.nextToken() != JsonToken.END_OBJECT) {
-					System.out.println(parser.getText());
+					print(fieldName, parser.getText());
 				}
 			}
 
@@ -48,7 +48,7 @@ public class StreamingExample {
 						String subStrField = parser.getCurrentName();
 						if ("subStr".equals(subStrField)) {
 							parser.nextToken();
-							System.out.println(parser.getText());
+							print(fieldName, parser.getText());
 						}
 					}
 				}
@@ -56,6 +56,10 @@ public class StreamingExample {
 		}
 
 		parser.close();
+	}
+
+	private void print(String field, String value) {
+		System.out.println(field + ":" + value);
 	}
 
 	public static void main(String[] args) throws Exception {
